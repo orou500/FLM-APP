@@ -15,6 +15,16 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter an Password'],
         minlength: [6, 'Password must be at least 6 charcters'],
     },
+    firstName: {
+        type: String,
+        required: [true, 'Please enter your first name'],
+        minlength: [2, 'First name must be at least 2 charcters'],
+    },
+    lastName: {
+        type: String,
+        required: [true, 'Please enter your last name'],
+        minlength: [2, 'last name must be at least 2 charcters'],
+    }
 })
 
 //fire a fumction before doc saved to db

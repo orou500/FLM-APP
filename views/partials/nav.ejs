@@ -13,6 +13,6 @@
         <% } %>
     </ul>
     <% if(user) { %>
-    <p>welcome, <%= user.email %></p>
+    <p>welcome, <a href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
     <% } %>
 </header>

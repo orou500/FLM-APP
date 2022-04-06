@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+
+    <div>
+        <h2>Your Profile:</h2>
+    </div> 
+    <div>
+        <h3>Email:</h3><p><%= user.email %></p>
+    </div>
+    <div>
+    <h3>Name:</h3><p><%= user.firstName %> <%= user.lastName %></p>
+    </div>
+
+<%- include('partials/footer') %>

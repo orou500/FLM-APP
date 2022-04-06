@@ -44,6 +44,9 @@ app.get('/*', checkUser)
 app.get('/',(req, res) => {
     res.render('index')
 })
+app.get('/profile',(req, res) => {
+    res.render('profile')
+})
 app.get('/leagues', checkAuth, (req, res) => {
     res.render('leagues')
 })
