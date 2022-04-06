@@ -1,9 +1,18 @@
 <header>
     <h1><%= siteName %></h1>
     <ul>
+        <% if(!user) { %>
+        <li><a href="/">Home</a></li>
+        <li><a href="/leagues">leagues</a></li>
+        <li><a href="/login">login</a></li>
+        <li><a href="/register">register</a></li>
+        <% } else { %>
         <li><a href="/">Home</a></li>
         <li><a href="/leagues">leagues</a></li>
         <li><a href="/logout">logout</a></li>
+        <% } %>
     </ul>
+    <% if(user) { %>
     <p>welcome, <%= user.email %></p>
+    <% } %>
 </header>

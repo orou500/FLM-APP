@@ -41,7 +41,7 @@ app.set('view engine', 'ejs')
 
 //view routes
 app.get('/*', checkUser)
-app.get('/', checkAuth,(req, res) => {
+app.get('/',(req, res) => {
     res.render('index')
 })
 app.get('/leagues', checkAuth, (req, res) => {
