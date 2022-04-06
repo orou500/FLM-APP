@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const authRoutes = require('./routes/authRoutes')
 const cookieParaser = require('cookie-parser')
-const checkAuth = require('./middlewares/checkAuth')
+const { checkAuth, checkUser } = require('./middlewares/checkAuth')
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -40,7 +40,8 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs')
 
 //view routes
-app.get('/', (req, res) => {
+app.get('/*', checkUser)
+app.get('/', checkAuth,(req, res) => {
     res.render('index')
 })
 app.get('/leagues', checkAuth, (req, res) => {

@@ -1,14 +1,38 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
+const User = require('../models/User')
 
 const checkAuth = (req, res, next) => {
+    const token = req.cookies.jwt
     
     try{
-        const token = req.headers.authorization.split(' ')[1];
-        jwt.verify(token, process.env.JWT_KEY);
-        next();
+        jwt.verify(token, process.env.JWT_KEY)
+        next()
     } catch(error) { 
-        res.status(401).render('404');
+        res.status(401).redirect('/login')
     }
 }
 
-module.exports = checkAuth;
+const checkUser = (req, res, next) => {
+   const token = req.cookies.jwt;
+   if(token) {
+       jwt.verify(token, process.env.JWT_KEY, async (err, decodedToken) => {
+           if(err) {
+               console.log(err.message)
+               res.locals.user = null
+               next()
+           } else {
+               console.log(decodedToken)
+               let user = await User.findById(decodedToken.id)
+               res.locals.user = user
+               next()
+           }
+       })
+   }
+   else{
+       res.locals.user = null
+       next()
+   }
+}
+
+
+module.exports = { checkAuth, checkUser };

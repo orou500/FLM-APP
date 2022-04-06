@@ -1,7 +1,9 @@
 <header>
     <h1><%= siteName %></h1>
-    <a href="/">home</a>
-    <a href="/leagues">leagues</a>
-    <a href="/login">login</a>
-    <a href="/register">register</a>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/leagues">leagues</a></li>
+        <li><a href="/logout">logout</a></li>
+    </ul>
+    <p>welcome, <%= user.email %></p>
 </header>

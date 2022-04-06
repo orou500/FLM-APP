@@ -1,9 +1,10 @@
 <%- include('partials/header') %>
 
-<%- include('partials/nav') %>
-
 <h2>Login</h2>
-
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/register">register</a></li>
+</ul>
 <form action="/login?_method=POST" method="POST">
     <label for="email">Email:</label>
     <input type="text" id="email" name="email" required>
@@ -35,14 +36,14 @@
             })
             const data = await res.json()
             if(data.errors) {
-                allError.textContent = 'Email or password incorrect'
+                allError.textContent = `Email or password incorrect`
             }
             if(data.user){
                 window.location.replace("/");
             }
         }
         catch (err) {
-            allError.textContent = 'Email or password incorrect'
+            allError.textContent = `Email or password incorrect`
         }
     })
 </script>
