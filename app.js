@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const authRoutes = require('./routes/authRoutes')
+const leagueRoutes = require('./routes/leagueRoutes')
 const cookieParaser = require('cookie-parser')
 const { checkAuth, checkUser } = require('./middlewares/checkAuth')
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
@@ -50,7 +51,11 @@ app.get('/profile',(req, res) => {
 app.get('/leagues', checkAuth, (req, res) => {
     res.render('leagues')
 })
-app.use(authRoutes);
+app.get('/leagues/add', checkAuth, (req, res) => {
+    res.render('addleague')
+})
+app.use(authRoutes)
+app.use(leagueRoutes)
 
 
 app.use((req, res, next) => {

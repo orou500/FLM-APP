@@ -54,8 +54,8 @@
             if(data.errors) {
                 emailError.textContent = data.errors.email
                 passwordError.textContent = data.errors.password
-                passwordError.textContent = data.errors.firstName
-                passwordError.textContent = data.errors.lastName
+                firstName.textContent = data.errors.firstName
+                lastName.textContent = data.errors.lastName
             }
             if(!data.errors){
                 window.location.replace("/");
