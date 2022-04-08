@@ -6,6 +6,7 @@ const methodOverride = require('method-override')
 const authRoutes = require('./routes/authRoutes')
 const leagueRoutes = require('./routes/leagueRoutes')
 const cookieParaser = require('cookie-parser')
+const League = require('./models/League')
 const { checkAuth, checkUser } = require('./middlewares/checkAuth')
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
     useNewUrlParser: true,
@@ -48,11 +49,13 @@ app.get('/',(req, res) => {
 app.get('/profile',(req, res) => {
     res.render('profile')
 })
-app.get('/leagues', checkAuth, (req, res) => {
-    res.render('leagues')
-})
+
 app.get('/leagues/add', checkAuth, (req, res) => {
     res.render('addleague')
+})
+app.get('/league/edit/:id', async (req, res) => {
+    const league = await League.findById(req.params.id)
+    res.render('editleague', {league: league});
 })
 app.use(authRoutes)
 app.use(leagueRoutes)

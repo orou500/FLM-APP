@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+    
+    <h1>League Page!</h1>
+    <div>
+        <h3><%= leagues.title %></h3>
+        <p>Created at: <%= leagues.createdAt.toLocaleDateString('en-GB') %></p>
+        <a href="/league/edit/<%=leagues.id%>">Edit</a>
+    </div>
+
+<%- include('partials/footer') %>

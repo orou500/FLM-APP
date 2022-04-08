@@ -5,6 +5,20 @@
 <div>
     <h2>Leagues</h2>
     <a href="/leagues/add">add league</a>
+    <div>
+        <% if(leagues.length > 0) { %>
+            <% leagues.forEach(league => { %> 
+                <h3><a href="/league/<%=league.id%>"><%= league.title %></a></h3>
+                <p>Created at: <%= league.createdAt.toLocaleDateString('en-GB') %></p>
+                <form action="/league/<%= league.id %>?_method=DELETE" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            <% }) %> 
+        <% } else { %>
+            <p>There are no Leagues to display...</p>
+        <% } %>
+    </div>
+
 </div>
 
 <%- include('partials/footer') %>

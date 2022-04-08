@@ -1,0 +1,11 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+    <h1>Edit League Page!</h1>
+        <form action="/league/edit/<%=league._id%>?_method=PUT" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= league.title %>" required>
+            <button type="submit">Submit</button>
+            <p>Last update: <%= league.updatedAt.toLocaleDateString('en-GB') %></p>
+        </form>
+<%- include('partials/footer') %>
