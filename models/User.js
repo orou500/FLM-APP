@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter your last name'],
         minlength: [2, 'last name must be at least 2 charcters'],
+    },
+    admin: {
+        type: Boolean, 
+        default: false
     }
 },
 {

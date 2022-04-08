@@ -8,7 +8,7 @@ const leagueRoutes = require('./routes/leagueRoutes')
 const cookieParaser = require('cookie-parser')
 const League = require('./models/League')
 const User = require('./models/User')
-const { checkAuth, checkUser } = require('./middlewares/checkAuth')
+const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth')
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -54,10 +54,10 @@ app.get('/user/edit/:id', async (req, res) => {
     const user = await User.findById(req.params.id)
     res.render('edituser', {user});
 })
-app.get('/leagues/add', checkAuth, (req, res) => {
+app.get('/leagues/add', checkAuth, checkIfAdmin, (req, res) => {
     res.render('addleague')
 })
-app.get('/league/edit/:id', async (req, res) => {
+app.get('/league/edit/:id', checkIfAdmin,async (req, res) => {
     const league = await League.findById(req.params.id)
     res.render('editleague', {league: league});
 })

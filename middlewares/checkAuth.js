@@ -34,5 +34,14 @@ const checkUser = (req, res, next) => {
    }
 }
 
+const checkIfAdmin = async (req, res, next) => {
+    if(res.locals.user.admin){
+        next()
+    }else{
+        res.redirect('/')
+        next()
+    }
+}
 
-module.exports = { checkAuth, checkUser };
+
+module.exports = { checkAuth, checkUser, checkIfAdmin };

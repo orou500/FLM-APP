@@ -8,4 +8,7 @@
             <button type="submit">Submit</button>
             <p>Last update: <%= league.updatedAt.toLocaleDateString('en-GB') %></p>
         </form>
+        <form action="/league/<%= league.id %>?_method=DELETE" method="post">
+            <button type="submit">Delete</button>
+        </form>
 <%- include('partials/footer') %>
