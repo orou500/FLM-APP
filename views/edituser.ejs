@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+    <h1>Edit User Page!</h1>
+        <form action="/user/edit/<%=user._id%>?_method=PUT" method="POST">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" required>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" required>
+            <button type="submit">Submit</button>
+        </form>
+<%- include('partials/footer') %>

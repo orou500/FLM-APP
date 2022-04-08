@@ -7,7 +7,7 @@ const LeagueSchema = new mongoose.Schema({
         unique: true,
         minlength: [6, 'Title must be at least 6 charcters'],
         maxlength: [50, 'Title must be under 50 charcters']
-    }
+    },
 },
 {
     timestamps: true,

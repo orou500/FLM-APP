@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes')
 const leagueRoutes = require('./routes/leagueRoutes')
 const cookieParaser = require('cookie-parser')
 const League = require('./models/League')
+const User = require('./models/User')
 const { checkAuth, checkUser } = require('./middlewares/checkAuth')
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
     useNewUrlParser: true,
@@ -49,7 +50,10 @@ app.get('/',(req, res) => {
 app.get('/profile',(req, res) => {
     res.render('profile')
 })
-
+app.get('/user/edit/:id', async (req, res) => {
+    const user = await User.findById(req.params.id)
+    res.render('edituser', {user});
+})
 app.get('/leagues/add', checkAuth, (req, res) => {
     res.render('addleague')
 })

@@ -82,3 +82,12 @@ module.exports.logout_get = (req, res) => {
     res.cookie('jwt', '', {maxAge: 1})
     res.redirect('/')
 }
+
+module.exports.updateUser = (req, res) => { 
+    User.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}, function(err){
+        if(err){
+            res.status(500).render('404')
+        }
+        res.status(200).redirect('../../')
+    })
+}

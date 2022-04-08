@@ -10,6 +10,7 @@
     </div>
     <div>
     <h3>Name:</h3><p><%= user.firstName %> <%= user.lastName %></p>
+    <a href="/user/edit/<%=user.id%>">Edit</a>
     </div>
 
 <%- include('partials/footer') %>
