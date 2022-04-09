@@ -1,4 +1,5 @@
 const League = require('../models/League')
+const User =require('../models/User')
 
 //handle Errors
 const handleErrors = (err) => {
@@ -34,7 +35,12 @@ module.exports.league_post = async (req, res) => {
     try{
         //create the League in DB
         const league = await League.create({ title, slug, usersId })
-        res.status(201).json({league: league._id})
+        User.findOneAndUpdate({"_id": usersId}, { $push: { "leaguesId": league._id } }, function(err){
+            if(err){
+                res.status(500).render('404')
+            }
+            res.status(201).json({league: league._id})
+        })
     } catch (err) {
         const errors = handleErrors(err)
         res.status(400).json({ errors })
@@ -44,7 +50,15 @@ module.exports.league_post = async (req, res) => {
 
 module.exports.league_delete = async (req, res) => {
     League.findByIdAndDelete(req.params.id).then(() => {
-        res.status(200).redirect('../leagues')
+        User.updateMany(
+            { },
+            { $pull : {leaguesId: req.params.id} },
+            function(err, data) { 
+                if(err){
+                    res.status(500).render('404')
+                }
+                res.status(200).redirect('../leagues')
+             })
         }).catch(error => {
             res.status(500).render('404')
     })
@@ -64,5 +78,27 @@ module.exports.updateLeague = (req, res) => {
             res.status(500).render('404')
         }
         res.status(200).redirect('../../leagues')
+    })
+}
+
+module.exports.addUserToLeague = (req, res) => { 
+    const { email } = req.body
+    User.find({ email }).then((users) => {
+        if(users.length === 0){
+            return res.status(401).render('404')
+        }
+        const [ user ] = users;
+
+        League.findByIdAndUpdate(req.params.id,{$push: {"usersId": user}},{new:true},function(err){
+            if(err){
+                res.status(500).render('404')
+            }
+            User.findOneAndUpdate({"email": user.email}, { $push: { "leaguesId": req.params.id } }, function(err){
+                if(err){
+                    res.status(500).render('404')
+                }
+                res.status(200).redirect('../../leagues')
+            })
+        })
     })
 }

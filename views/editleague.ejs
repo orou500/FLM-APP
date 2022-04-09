@@ -8,7 +8,12 @@
             <button type="submit">Submit</button>
             <p>Last update: <%= league.updatedAt.toLocaleDateString('en-GB') %></p>
         </form>
-        <form action="/league/<%= league.id %>?_method=DELETE" method="post">
+        <form action="/league/<%= league.id %>?_method=DELETE" method="POST">
             <button type="submit">Delete</button>
+        </form>
+        <form action="/league/<%= league.id %>/adduser?_method=POST" method="POST">
+            <label for="email">User email:</label>
+            <input type="text" id="email" name="email" required>
+            <button type="submit">Add User</button>
         </form>
 <%- include('partials/footer') %>

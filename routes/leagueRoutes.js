@@ -9,5 +9,6 @@ router.get('/leagues', checkAuth, leagueController.leagues_get)
 router.get('/league/:slug', checkAuth, leagueController.oneleague_get)
 router.delete('/league/:id', checkAuth, leagueController.league_delete)
 router.put('/league/edit/:id', checkAuth, leagueController.updateLeague)
+router.post('/league/:id/adduser', checkAuth, leagueController.addUserToLeague)
 
 module.exports = router
