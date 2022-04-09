@@ -28,7 +28,11 @@ const userSchema = new mongoose.Schema({
     admin: {
         type: Boolean, 
         default: false
-    }
+    },
+    leaguesId: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'league'
+    }],
 },
 {
     timestamps: true,

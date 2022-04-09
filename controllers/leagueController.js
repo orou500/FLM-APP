@@ -29,11 +29,11 @@ module.exports.leagues_get = (req, res) => {
 }
 
 module.exports.league_post = async (req, res) => {
-    const { title } = req.body
+    const { title, slug } = req.body
 
     try{
         //create the League in DB
-        const league = await League.create({ title })
+        const league = await League.create({ title, slug })
         res.status(201).json({league: league._id})
     } catch (err) {
         const errors = handleErrors(err)
@@ -51,8 +51,8 @@ module.exports.league_delete = async (req, res) => {
 }
 
 module.exports.oneleague_get = (req, res) => { 
-    League.findOne({ id: req.params._id }).then((leagues) => {
-        res.status(200).render(`league`, {leagues: leagues})
+    League.findOne({ slug: req.params.slug }).then((leagues) => {
+        res.status(200).render('league', {leagues: leagues})
     }).catch(error => {
         res.status(500).render('404')
     })

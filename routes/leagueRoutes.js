@@ -6,7 +6,7 @@ const router = Router()
 
 router.post('/leagues/add', checkAuth, leagueController.league_post)
 router.get('/leagues', checkAuth, leagueController.leagues_get)
-router.get('/league/:id', checkAuth, leagueController.oneleague_get)
+router.get('/league/:slug', checkAuth, leagueController.oneleague_get)
 router.delete('/league/:id', checkAuth, leagueController.league_delete)
 router.put('/league/edit/:id', checkAuth, leagueController.updateLeague)
 
