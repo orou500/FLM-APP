@@ -9,7 +9,15 @@ const LeagueSchema = new mongoose.Schema({
         minlength: [6, 'Title must be at least 6 charcters'],
         maxlength: [50, 'Title must be under 50 charcters']
     },
-    slug: { type: String, required: true, unique: true},
+    slug: { 
+        type: String,
+        required: true,
+        unique: true
+    },
+    usersId: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    }],
 },
 {
     timestamps: true,

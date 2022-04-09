@@ -29,11 +29,11 @@ module.exports.leagues_get = (req, res) => {
 }
 
 module.exports.league_post = async (req, res) => {
-    const { title, slug } = req.body
+    const { title, slug, usersId } = req.body
 
     try{
         //create the League in DB
-        const league = await League.create({ title, slug })
+        const league = await League.create({ title, slug, usersId })
         res.status(201).json({league: league._id})
     } catch (err) {
         const errors = handleErrors(err)
