@@ -38,5 +38,5 @@ LeagueSchema.pre('validate', function(next) {
 
 })
 
-const User = mongoose.model('league', LeagueSchema)
-module.exports = User
+const League = mongoose.model('league', LeagueSchema)
+module.exports = League
