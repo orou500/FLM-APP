@@ -88,17 +88,23 @@ module.exports.addUserToLeague = (req, res) => {
             return res.status(401).render('404')
         }
         const [ user ] = users;
-
-        League.findByIdAndUpdate(req.params.id,{$push: {"usersId": user}},{new:true},function(err){
+        //find the user, if the user already have thet leagueId then send error else add the leagueId to the user and the UserId to the League
+        User.findOne({"email": user.email}, function(err){
             if(err){
-                res.status(500).render('404')
+                League.findByIdAndUpdate(req.params.id,{$push: {"usersId": user}},{new:true},function(err){
+                    if(err){
+                        res.status(500).render('404')
+                    }
+                    User.findOneAndUpdate({"email": user.email}, { $push: { "leaguesId": req.params.id } }, function(err){
+                        if(err){
+                            res.status(500).render('404')
+                        }
+                        res.status(200).redirect('../../leagues')
+                    })
+                })
             }
-            User.findOneAndUpdate({"email": user.email}, { $push: { "leaguesId": req.params.id } }, function(err){
-                if(err){
-                    res.status(500).render('404')
-                }
-                res.status(200).redirect('../../leagues')
-            })
+            res.status(500).render('404')
         })
+    
     })
 }
