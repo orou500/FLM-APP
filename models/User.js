@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref: 'league'
     }],
+    matchesId: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
 },
 {
     timestamps: true,

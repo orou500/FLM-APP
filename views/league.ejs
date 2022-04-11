@@ -7,7 +7,8 @@
         <h3><%= leagues.title %></h3>
         <p>Created at: <%= leagues.createdAt.toLocaleDateString('en-GB') %></p>
         <% if(user.admin) { %>
-        <a href="/league/edit/<%=leagues.id%>">Edit</a>
+            <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
+            <a href="/league/edit/<%=leagues.id%>">Edit</a>
         <% } %> 
     </div>
 

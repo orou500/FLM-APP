@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const slugify = require('slugify');
 
-const LeagueSchema = new mongoose.Schema({
+const MatchSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Please enter title"],
@@ -18,17 +18,17 @@ const LeagueSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref: 'user'
     }],
-    matchesId: [{
+    leagueId: {
         type : mongoose.Schema.Types.ObjectId,
-        ref: 'match'
-    }],
+        ref: 'league'
+    },
 },
 {
     timestamps: true,
 }
 )
 
-LeagueSchema.pre('validate', function(next) {
+MatchSchema.pre('validate', function(next) {
     if(this.title){
         this.slug = slugify(this.title, { lower: true,
         strict: true })
@@ -42,5 +42,5 @@ LeagueSchema.pre('validate', function(next) {
 
 })
 
-const League = mongoose.model('league', LeagueSchema)
-module.exports = League
+const Match = mongoose.model('match', MatchSchema)
+module.exports = Match

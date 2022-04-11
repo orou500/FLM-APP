@@ -12,5 +12,9 @@ router.put('/league/edit/:id', checkAuth, leagueController.updateLeague)
 router.post('/league/:id/adduser', checkAuth, leagueController.addUserToLeague)
 router.get('/profile/leagues', checkAuth, leagueController.findLeaguesUser)
 
+//matches
+router.post('/leagues/addmatch', checkAuth, leagueController.createMatch)
+
+
 
 module.exports = router

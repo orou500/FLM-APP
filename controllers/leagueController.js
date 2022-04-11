@@ -1,5 +1,6 @@
 const League = require('../models/League')
 const User =require('../models/User')
+const Match =require('../models/Match')
 
 //handle Errors
 const handleErrors = (err) => {
@@ -117,5 +118,30 @@ module.exports.findLeaguesUser = (req, res) => {
         res.status(500).json(error)
     })
     //const records = await Model.find({ '_id': { $in: ids } })
+    
+}
+
+module.exports.createMatch = async (req, res) => {
+    const { title, slug, usersId, leagueId } = req.body
+
+    try{
+        //create the Match in DB
+        const match = await Match.create({ title, slug, usersId , leagueId})
+        User.findOneAndUpdate({"_id": usersId}, { $push: { "matchesId": match._id } }, function(err){
+            if(err){
+                res.status(500).render('404')
+            }
+        })
+        League.findOneAndUpdate({"_id": leagueId}, { $push: { "matchesId": match._id } }, function(err){
+            if(err){
+                res.status(500).render('404')
+            }
+            res.status(201).redirect('leagues')
+        })
+        
+    } catch (err) {
+        const errors = handleErrors(err)
+        res.status(400).json({ errors })
+    }
     
 }
