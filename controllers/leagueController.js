@@ -103,3 +103,19 @@ module.exports.addUserToLeague = (req, res) => {
         res.status(200).redirect('../../leagues')
     })
 }
+
+module.exports.findLeaguesUser = (req, res) => {
+    let usersLeague = []
+
+    for(let i = 0; i < res.locals.user.leaguesId.length; i++) {
+        usersLeague[i] = res.locals.user.leaguesId[i]
+    }
+
+    League.find().where('_id').in(usersLeague).then((leagues) => {
+        res.status(200).render('myleagues', {leagues: leagues})
+    }).catch(error => {
+        res.status(500).json(error)
+    })
+    //const records = await Model.find({ '_id': { $in: ids } })
+    
+}

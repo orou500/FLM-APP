@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+    
+<div>
+    <h2><%= user.firstName %> <%= user.lastName %> Leagues</h2>
+    <% if(user.admin) { %>
+    <a href="/leagues/add">add league</a>
+    <% } %> 
+    <div>
+        <% if(leagues.length > 0) { %>
+            <% leagues.forEach(league => { %> 
+                <h3><a href="/league/<%=league.slug%>"><%= league.title %></a></h3>
+                <p>Created at: <%= league.createdAt.toLocaleDateString('en-GB') %></p>
+            <% }) %> 
+        <% } else { %>
+            <p>There are no Leagues to display...</p>
+        <% } %>
+    </div>
+
+</div>
+
+<%- include('partials/footer') %>
