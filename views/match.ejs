@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+<%- include('partials/nav') %>
+    
+    <h1>Match Page!</h1>
+    <div>
+        <h3><%= matches.title %></h3>
+        <p>Created at: <%= matches.createdAt.toLocaleDateString('en-GB') %></p>
+        <% if(user.admin) { %>
+            <a href="/league/match/edit/<%=matches.id%>">Edit</a>
+        <% } %> 
+    </div>
+
+<%- include('partials/footer') %>

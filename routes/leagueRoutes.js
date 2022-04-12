@@ -14,7 +14,8 @@ router.get('/profile/leagues', checkAuth, leagueController.findLeaguesUser)
 
 //matches
 router.post('/leagues/addmatch', checkAuth, leagueController.createMatch)
-
+router.get('/league/match/:slug', checkAuth, leagueController.oneMatch_get)
+router.put('/league/match/edit/:id', checkAuth, leagueController.updateMatch)
 
 
 module.exports = router

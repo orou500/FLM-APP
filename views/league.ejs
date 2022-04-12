@@ -11,5 +11,15 @@
             <a href="/league/edit/<%=leagues.id%>">Edit</a>
         <% } %> 
     </div>
+    <div>
+        <% if(matches.length > 0) { %>
+            <% matches.forEach(match => { %> 
+                <h3><a href="/league/match/<%=match.slug%>"><%= match.title %></a></h3>
+                <p>Created at: <%= match.createdAt.toLocaleDateString('en-GB') %></p>
+            <% }) %> 
+        <% } else { %>
+            <p>There are no Matches to display...</p>
+        <% } %>
+    </div>
 
 <%- include('partials/footer') %>

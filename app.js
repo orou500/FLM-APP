@@ -7,6 +7,7 @@ const authRoutes = require('./routes/authRoutes')
 const leagueRoutes = require('./routes/leagueRoutes')
 const cookieParaser = require('cookie-parser')
 const League = require('./models/League')
+const Match = require('./models/Match')
 const User = require('./models/User')
 const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth')
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {

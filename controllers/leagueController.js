@@ -67,7 +67,11 @@ module.exports.league_delete = async (req, res) => {
 
 module.exports.oneleague_get = (req, res) => { 
     League.findOne({ slug: req.params.slug }).then((leagues) => {
-        res.status(200).render('league', {leagues: leagues})
+        Match.find({leagueId: leagues.id}).then((matches) => {
+            res.status(200).render('league', {leagues: leagues, matches: matches })
+        }).catch(error => {
+            res.status(500).render('404')
+        })
     }).catch(error => {
         res.status(500).render('404')
     })
@@ -144,4 +148,21 @@ module.exports.createMatch = async (req, res) => {
         res.status(400).json({ errors })
     }
     
+}
+
+module.exports.oneMatch_get = (req, res) => { 
+    Match.findOne({ slug: req.params.slug }).then((matches) => {
+        res.status(200).render('match', {matches: matches })
+    }).catch(error => {
+        res.status(500).render('404')
+    })
+}
+
+module.exports.updateMatch = (req, res) => { 
+    Match.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}, function(err){
+        if(err){
+            res.status(500).render('404')
+        }
+        res.status(200).redirect('../../leagues')
+    })
 }
