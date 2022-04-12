@@ -8,7 +8,16 @@
         <p>Created at: <%= matches.createdAt.toLocaleDateString('en-GB') %></p>
         <% if(user.admin) { %>
             <a href="/league/match/edit/<%=matches.id%>">Edit</a>
-        <% } %> 
+        <% } %>
     </div>
-
+    <div>
+        <h3>Users In Match:</h3>
+        <% if(usersInMatch.length > 0) { %>
+            <% usersInMatch.forEach(userInMatch => { %> 
+                <h3><%= userInMatch.firstName %> <%= userInMatch.lastName %></a></h3>
+            <% }) %> 
+        <% } else { %>
+            <p>There are no Users to display...</p>
+        <% } %>
+    </div>
 <%- include('partials/footer') %>

@@ -152,17 +152,76 @@ module.exports.createMatch = async (req, res) => {
 
 module.exports.oneMatch_get = (req, res) => { 
     Match.findOne({ slug: req.params.slug }).then((matches) => {
-        res.status(200).render('match', {matches: matches })
+        User.find({matchesId: matches.id}).then((usersInMatch) =>{
+            res.status(200).render('match', {matches: matches, usersInMatch: usersInMatch})
+        }).catch(error => {
+            res.status(500).render('404')
+        })
     }).catch(error => {
         res.status(500).render('404')
     })
 }
 
 module.exports.updateMatch = (req, res) => { 
-    Match.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}, function(err){
+    Match.findByIdAndUpdate(req.params.id,{$set:req.body}, function(err){
         if(err){
             res.status(500).render('404')
         }
-        res.status(200).redirect('../../leagues')
+        res.status(200).redirect('../../../leagues')
     })
+}
+
+module.exports.addUserToMatch = (req, res) => { 
+    const { email } = req.body
+    User.find({ email }).then((users) => {
+        if(users.length === 0){
+            return res.status(401).render('404')
+        }
+        const [ user ] = users;
+        //find the user, if the user already have thet leagueId then send error else add the leagueId to the user and the UserId to the League
+
+        User.findOneAndUpdate({"email": user.email}, { $addToSet: { matchesId: req.params.id } }, function(err){
+            if(err){
+                res.status(500).render('404')
+            }
+        })
+        League.findByIdAndUpdate(req.params.id,{$addToSet: {usersId: user}},function(err, league){
+            if(err){
+                res.status(500).render('404')
+            }
+        })
+        Match.findByIdAndUpdate(req.params.id,{$addToSet: {usersId: user}},function(err, league){
+            if(err){
+                res.status(500).render('404')
+            }
+        })
+        res.status(200).redirect('../../../leagues')
+    })
+}
+
+module.exports.deleteMatch = async (req, res) => {
+    Match.findByIdAndDelete(req.params.id).then(() => {
+        User.updateMany(
+            { },
+            { $pull : {matchesId: req.params.id} },
+            function(err, data) { 
+                if(err){
+                    res.status(500).render('404')
+                }
+             })
+             League.updateMany(
+                { },
+                { $pull : {matchesId: req.params.id} },
+                function(err, data) { 
+                    if(err){
+                        res.status(500).render('404')
+                    }
+                    res.status(200).redirect('../leagues')
+            }).catch(error => {
+                res.status(500).render('404')
+            })
+        }
+        ).catch(error => {
+            res.status(500).render('404')
+        })
 }

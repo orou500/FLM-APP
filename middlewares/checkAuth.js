@@ -38,8 +38,7 @@ const checkIfAdmin = async (req, res, next) => {
     if(res.locals.user.admin){
         next()
     }else{
-        res.redirect('/')
-        next()
+        return res.redirect('/')
     }
 }
 

@@ -66,6 +66,10 @@ app.get('/league/edit/:id', checkIfAdmin,async (req, res) => {
     const league = await League.findById(req.params.id)
     res.render('editleague', {league: league});
 })
+app.get('/league/match/edit/:id', checkIfAdmin,async (req, res) => {
+    const match = await Match.findById(req.params.id)
+    res.render('editmatch', {match: match});
+})
 app.use(authRoutes)
 app.use(leagueRoutes)
 
