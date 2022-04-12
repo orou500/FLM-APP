@@ -10,6 +10,14 @@
             <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
             <a href="/league/edit/<%=leagues.id%>">Edit</a>
         <% } %> 
+        <h3>Users In League:</h3>
+        <% if(usersInLeague.length > 0) { %>
+            <% usersInLeague.forEach(userInLeague => { %> 
+                <p><%= userInLeague.firstName %> <%= userInLeague.lastName %></p>
+            <% }) %> 
+        <% } else { %>
+            <p>There are no Users to display...</p>
+        <% } %>
     </div>
     <div>
         <% if(matches.length > 0) { %>

@@ -14,7 +14,7 @@
         <h3>Users In Match:</h3>
         <% if(usersInMatch.length > 0) { %>
             <% usersInMatch.forEach(userInMatch => { %> 
-                <h3><%= userInMatch.firstName %> <%= userInMatch.lastName %></a></h3>
+                <p><%= userInMatch.firstName %> <%= userInMatch.lastName %></p>
             <% }) %> 
         <% } else { %>
             <p>There are no Users to display...</p>
