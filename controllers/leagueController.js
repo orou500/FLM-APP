@@ -50,20 +50,25 @@ module.exports.league_post = async (req, res) => {
 
 
 module.exports.league_delete = async (req, res) => {
-    League.findByIdAndDelete(req.params.id).then(() => {
-        User.updateMany(
-            { },
-            { $pull : {leaguesId: req.params.id} },
-            function(err, data) { 
-                if(err){
-                    res.status(500).render('404')
-                }
-                res.status(200).redirect('../leagues')
-             })
+   
+    League.findByIdAndDelete(req.params.id).then((league) => {
+        Match.deleteMany({leagueId: req.params.id}, function (err) {
+            res.status(200).redirect('../leagues')
         }).catch(error => {
-            res.status(500).render('404')
-    })
-}
+            User.updateMany(
+                { },
+                { $pull : {leaguesId: req.params.id, matchesId: {$in: league.matchesId } },
+                function(err, data) { 
+                    if(err){
+                        res.status(500).render('404')
+                    }
+                    res.status(500).render('404')
+                 }
+            }).catch(error => {
+                res.status(500).render('404')
+        })
+        })
+})}
 
 module.exports.oneleague_get = (req, res) => { 
     League.findOne({ slug: req.params.slug }).then((leagues) => {
