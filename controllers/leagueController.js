@@ -216,9 +216,8 @@ module.exports.deleteMatch = async (req, res) => {
                     if(err){
                         res.status(500).render('404')
                     }
-                    res.status(200).redirect('../leagues')
             }).catch(error => {
-                res.status(500).render('404')
+                res.status(200).redirect('/')
             })
         }
         ).catch(error => {
