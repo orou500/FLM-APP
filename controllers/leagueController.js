@@ -78,7 +78,7 @@ module.exports.oneleague_get = (req, res) => {
 }
 
 module.exports.updateLeague = (req, res) => { 
-    League.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}, function(err){
+    League.findByIdAndUpdate(req.params.id,{$set:req.body}, function(err){
         if(err){
             res.status(500).render('404')
         }
@@ -95,12 +95,12 @@ module.exports.addUserToLeague = (req, res) => {
         const [ user ] = users;
         //find the user, if the user already have thet leagueId then send error else add the leagueId to the user and the UserId to the League
 
-        User.findOneAndUpdate({"email": user.email}, { $addToSet: { leaguesId: req.params.id } },{new:true}, function(err){
+        User.findOneAndUpdate({"email": user.email}, { $addToSet: { leaguesId: req.params.id } }, function(err){
             if(err){
                 res.status(500).render('404')
             }
         })
-        League.findByIdAndUpdate(req.params.id,{$addToSet: {usersId: user}},{new:true},function(err){
+        League.findByIdAndUpdate(req.params.id,{$addToSet: {usersId: user}},function(err, league){
             if(err){
                 res.status(500).render('404')
             }

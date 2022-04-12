@@ -39,12 +39,12 @@ app.use((req, res, next) => {
     }
     next()
 })
+app.use(checkUser)
 
 //register view engine
 app.set('view engine', 'ejs')
 
 //view routes
-app.get('/*', checkUser)
 app.get('/',(req, res) => {
     res.render('index')
 })
