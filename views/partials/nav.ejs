@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar">
-        <a href="/" class="logo"><%= siteName %></a>
+        <h1><a href="/" class="logo"><%= siteName %></a></h1>
         <input type="checkbox" id="toggler">
         <label for="toggler"><i class="fa-solid fa-bars"></i></label>
         <div class="menu">
@@ -21,7 +21,7 @@
         </div>
         <% if(user) { %>
             <div class="user">
-                <p>Welcome, <a href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
+                <p>Welcome, <a class="user-name" href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
             </div>
         <% } %>
     </nav>

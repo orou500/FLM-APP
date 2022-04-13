@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
 * {
     margin: 0;
     padding: 0;
     font-family: "JetBrains Mono",monospace;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 footer{
@@ -19,7 +21,7 @@ footer{
     color: #36395A;
     cursor: pointer;
     display: inline-flex;
-    font-family: "JetBrains Mono",monospace;
+    /* font-family: "JetBrains Mono",monospace; */
     height: 48px;
     justify-content: center;
     line-height: 1;
@@ -78,7 +80,7 @@ footer{
   .input-container input:focus{ 
    border:none;	
    outline:none;
-   border-bottom:1px solid #e74c3c;	
+   border-bottom:1px solid #3c94e7;	
   }
 
   .input-container input:focus ~ label,
@@ -89,7 +91,12 @@ footer{
 }
 
 .all.error {
+    border-bottom:1px solid #e74c3c;	
     margin-bottom: 15px;
+}
+
+.user-name {
+    border-bottom:1px solid #3c94e7;	
 }
 
 .navbar {
@@ -98,7 +105,7 @@ footer{
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
-    padding: 15px;
+    padding: 5px 15px;
 }
 
 .navbar a{
@@ -109,6 +116,7 @@ footer{
 .logo {
     margin-right: 50px;
 }
+
 
 .nav-links .list {
     list-style: none;
@@ -152,6 +160,14 @@ footer{
         align-items: center;
         padding: 20px;
         text-align: center;
+    }
+    .navbar {
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+        0 2px 2px rgba(0,0,0,0.11), 
+        0 4px 4px rgba(0,0,0,0.11), 
+        0 6px 8px rgba(0,0,0,0.11),
+        0 8px 16px rgba(0,0,0,0.11);
     }
 
     .navbar label {
