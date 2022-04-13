@@ -9,6 +9,26 @@ const MatchSchema = new mongoose.Schema({
         minlength: [6, 'Title must be at least 6 charcters'],
         maxlength: [50, 'Title must be under 50 charcters']
     },
+    firstPlace: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
+    secondPlace: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
+    KOG: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
+    KOA: {
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
     slug: { 
         type: String,
         required: true,
