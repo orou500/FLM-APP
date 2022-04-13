@@ -16,10 +16,14 @@
 <div class="full-container">
     <h2>Login</h2>
     <form class="container" action="/login?_method=POST" method="POST">
-        <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required>
-        <label for="password">password:</label>
-        <input type="password" id="password" name="password" required>
+        <div class="input-container">
+            <input type="text" id="email" name="email" required>
+            <label for="email">Email</label>
+        </div>
+        <div class="input-container">
+            <input type="password" id="password" name="password" required>
+            <label for="password">password:</label>
+        </div>
         <div class="all error"></div>
         <button class="light-btn">Login</button>
     </form>
