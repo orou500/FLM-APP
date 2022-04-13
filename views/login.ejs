@@ -1,18 +1,29 @@
 <%- include('partials/header') %>
 
-<h2>Login</h2>
-<ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/register">register</a></li>
-</ul>
-<form action="/login?_method=POST" method="POST">
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required>
-    <label for="password">password:</label>
-    <input type="password" id="password" name="password" required>
-    <div class="all error"></div>
-    <button>Login</button>
-</form>
+<nav class="navbar">
+    <a href="/" class="logo"><%= siteName %></a>
+    <input type="checkbox" id="toggler">
+    <label for="toggler"><i class="fa-solid fa-bars"></i></label>
+    <div class="menu">
+        <div class="nav-links">
+            <ul class="list">
+                <li><a href="/">Home</a></li>
+                <li><a href="/register">register</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="full-container">
+    <h2>Login</h2>
+    <form class="container" action="/login?_method=POST" method="POST">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+        <label for="password">password:</label>
+        <input type="password" id="password" name="password" required>
+        <div class="all error"></div>
+        <button class="light-btn">Login</button>
+    </form>
+</div>
 
 <script>
     const form = document.querySelector('form');

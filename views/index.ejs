@@ -1,8 +1,17 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-    <div>
-        <h2>Home</h2>
+<div class="full-container">
+    <% if(!user) { %>
+    <h2>Welcome, guest</h2>
+    <% } else { %>
+    <h2>Welcome, <%= user.firstName %> <%= user.lastName %></h2>
+    <% } %>
+    <div class="container">
+    <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae ullam cum nihil nam dolorum! Minus atque neque consectetur porro similique quo doloribus ipsum maxime molestiae officiis ad, magnam blanditiis! Cumque!
+    </p>
     </div>
+</div>
 
 <%- include('partials/footer') %>
