@@ -14,7 +14,6 @@
                     <% } else { %>
                     <li><a href="/">Home</a></li>
                     <li><a href="/leagues">Leagues</a></li>
-                    <li><a href="/logout">Logout</a></li>
                     <% } %>
                 </ul>
             </div>
@@ -22,6 +21,7 @@
         <% if(user) { %>
             <div class="user">
                 <p>Welcome, <a class="user-name" href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
+                <a href="/logout">Logout</a>
             </div>
         <% } %>
     </nav>
