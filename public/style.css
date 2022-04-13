@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&subset=greek-ext');
+@import url('http://fonts.cdnfonts.com/css/scriptina');
+
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +10,10 @@
 
 footer{
     text-align: center;
+}
+
+.signature{
+    font-family: 'Scriptina';
 }
 
 .light-btn {
@@ -90,7 +96,7 @@ footer{
 	
 }
 
-.all.error {
+.error {
     border-bottom:1px solid #e74c3c;	
     margin-bottom: 15px;
 }

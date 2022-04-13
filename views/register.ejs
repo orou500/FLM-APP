@@ -1,26 +1,33 @@
 <%- include('partials/header') %>
 
+<%- include('partials/nav') %>
 
-<h2>Register</h2>
-<ul>
-    <li><a href="/">Home</a></li>
-</ul>
-
-<form action="/register?_method=POST" method="POST">
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required>
-    <div class="email error"></div>
-    <label for="password">password:</label>
-    <input type="password" id="password" name="password" required>
-    <div class="password error"></div>
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" required>
-    <div class="firstName error"></div>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" required>
-    <div class="lastName error"></div>
-    <button>Register</button>
-</form>
+<div class="full-container">
+    <h2>Register</h2>
+    <form class="container" action="/register?_method=POST" method="POST">
+        <div class="input-container">
+            <input type="text" id="email" name="email" required>
+            <label for="email">Email</label>
+        </div>
+        <div class="email error"></div>
+        <div class="input-container">
+            <input type="password" id="password" name="password" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="password error"></div>
+        <div class="input-container">
+            <input type="text" id="firstName" name="firstName" required>
+            <label for="firstName">First Name</label>
+        </div>
+        <div class="firstName error"></div>
+        <div class="input-container">
+            <input type="text" id="lastName" name="lastName" required>
+            <label for="lastName">Last Name</label>
+        </div>
+        <div class="lastName error"></div>
+        <button class="light-btn">Register</button>
+    </form>
+</div>
 
 <script>
     const form = document.querySelector('form');

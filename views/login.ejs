@@ -1,18 +1,6 @@
 <%- include('partials/header') %>
 
-<nav class="navbar">
-    <a href="/" class="logo"><%= siteName %></a>
-    <input type="checkbox" id="toggler">
-    <label for="toggler"><i class="fa-solid fa-bars"></i></label>
-    <div class="menu">
-        <div class="nav-links">
-            <ul class="list">
-                <li><a href="/">Home</a></li>
-                <li><a href="/register">register</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<%- include('partials/nav') %>
 <div class="full-container">
     <h2>Login</h2>
     <form class="container" action="/login?_method=POST" method="POST">
