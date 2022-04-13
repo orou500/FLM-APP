@@ -10,6 +10,8 @@ const League = require('./models/League')
 const Match = require('./models/Match')
 const User = require('./models/User')
 const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth')
+
+
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

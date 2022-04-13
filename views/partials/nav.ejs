@@ -1,18 +1,28 @@
 <header>
-    <h1><%= siteName %></h1>
-    <ul>
-        <% if(!user) { %>
-        <li><a href="/">Home</a></li>
-        <li><a href="/leagues">leagues</a></li>
-        <li><a href="/login">login</a></li>
-        <li><a href="/register">register</a></li>
-        <% } else { %>
-        <li><a href="/">Home</a></li>
-        <li><a href="/leagues">leagues</a></li>
-        <li><a href="/logout">logout</a></li>
+    <nav class="navbar">
+        <a href="/" class="logo"><%= siteName %></a>
+        <input type="checkbox" id="toggler">
+        <label for="toggler"><i class="fa-solid fa-bars"></i></label>
+        <div class="menu">
+            <div class="nav-links">
+                <ul class="list">
+                    <% if(!user) { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/leagues">leagues</a></li>
+                    <li><a href="/login">login</a></li>
+                    <li><a href="/register">register</a></li>
+                    <% } else { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/leagues">leagues</a></li>
+                    <li><a href="/logout">logout</a></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <% if(user) { %>
+            <div class="user">
+                <p>welcome, <a href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
+            </div>
         <% } %>
-    </ul>
-    <% if(user) { %>
-    <p>welcome, <a href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
-    <% } %>
+    </nav>
 </header>
