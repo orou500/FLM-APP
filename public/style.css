@@ -88,6 +88,10 @@ footer{
 	
 }
 
+.all.error {
+    margin-bottom: 15px;
+}
+
 .navbar {
     display: flex;
     flex-wrap: wrap;

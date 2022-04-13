@@ -8,20 +8,20 @@
                 <ul class="list">
                     <% if(!user) { %>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/leagues">leagues</a></li>
-                    <li><a href="/login">login</a></li>
-                    <li><a href="/register">register</a></li>
+                    <li><a href="/leagues">Leagues</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
                     <% } else { %>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/leagues">leagues</a></li>
-                    <li><a href="/logout">logout</a></li>
+                    <li><a href="/leagues">Leagues</a></li>
+                    <li><a href="/logout">Logout</a></li>
                     <% } %>
                 </ul>
             </div>
         </div>
         <% if(user) { %>
             <div class="user">
-                <p>welcome, <a href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
+                <p>Welcome, <a href="/profile"><%= user.firstName %> <%= user.lastName %></a></p>
             </div>
         <% } %>
     </nav>
