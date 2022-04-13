@@ -155,7 +155,8 @@ a::before {
 }
 
 .full-container{
-    height: 87vh;
+    margin-top: 10px;
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,7 +165,18 @@ a::before {
     text-align: center;
 }
 
-.full-container .container {
+.full-container-2{
+    margin-top: 25px;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,6 +185,61 @@ a::before {
     margin: 10px 30%;
     gap: 10px;
 }
+
+.container-2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    margin: 30px 15px;
+    position: relative;
+    width: 250px;
+    height: 200px;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+      inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+      5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+  }
+
+  .card .card-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background: #2a2b2f;
+    color: whitesmoke;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.5s;
+  }
+  .card .card-box a{
+    color: whitesmoke;
+  }
+
+  .card .card-box:hover {
+    transform: translateY(-50px);
+  }
+  
+  .card .card-box:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+  }
 
 @media  screen and (max-width: 600px) {
     .menu {

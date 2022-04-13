@@ -1,9 +1,9 @@
 <%- include('partials/header') %>
 <%- include('partials/nav') %>
 
-<div class="full-container">
+<div class="full-container animate__animated animate__bounceIn animate__slow">
     <% if(!user) { %>
-    <h2>Welcome, Guest</h2>
+    <h2 class="animate__animated animate__bounce animate__delay-3s  animate__repeat-2">Welcome, Guest</h2>
     <% } else { %>
     <h2 class="animate__animated animate__bounce animate__delay-3s  animate__repeat-2">Welcome, <%= user.firstName %> <%= user.lastName %></h2>
     <% } %>
