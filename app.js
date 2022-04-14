@@ -21,7 +21,7 @@ mongoose.connection.on('connected', () => {
     console.log('mongoDB Connected!')
 });
 
-app.locals.siteName = "Test App"
+app.locals.siteName = "FLM"
 
 app.use(morgan("dev"))
 app.use(express.static('public'))
