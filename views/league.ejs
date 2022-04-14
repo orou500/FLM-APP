@@ -4,13 +4,13 @@
     
 <div class="full-container-2">
     <h1>League Page!</h1>
-        <h3><%= leagues.title %></h3>
-        <p>Created at: <%= leagues.createdAt.toLocaleDateString('en-GB') %></p>
+    <h3><%= leagues.title %></h3>
+    <p>Created at: <%= leagues.createdAt.toLocaleDateString('en-GB') %></p>
         <% if(user.admin) { %>
             <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
             <a href="/league/edit/<%=leagues.id%>">Edit</a>
         <% } %> 
-        <div class="full-container-2">
+        <div class="container">
             <h3>Users In League:</h3>
             <% if(usersInLeague.length > 0) { %>
                 <% usersInLeague.forEach(userInLeague => { %> 
@@ -20,16 +20,19 @@
                 <p>There are no Users to display...</p>
             <% } %>
         </div>
-    </div>
-    <div>
+        <div class="container-2">
         <% if(matches.length > 0) { %>
             <% matches.forEach(match => { %> 
-                <h3><a href="/league/match/<%=match.slug%>"><%= match.title %></a></h3>
-                <p>Created at: <%= match.createdAt.toLocaleDateString('en-GB') %></p>
+                <div class="card">
+                    <div class="card-box">
+                        <h3><a href="/league/match/<%=match.slug%>"><%= match.title %></a></h3>
+                        <p>Created at: <%= match.createdAt.toLocaleDateString('en-GB') %></p>
+                    </div>
+                </div>
             <% }) %> 
         <% } else { %>
             <p>There are no Matches to display...</p>
         <% } %>
-    </div>
-
+        </div>
+</div>
 <%- include('partials/footer') %>
