@@ -102,6 +102,10 @@ footer{
     margin-bottom: 15px;
 }
 
+.title {
+    border-bottom: none !important;	
+}
+
 .user-name {
     border-bottom:1px solid #3c94e7;	
 }
