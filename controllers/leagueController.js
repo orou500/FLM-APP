@@ -73,7 +73,7 @@ module.exports.league_delete = async (req, res) => {
 module.exports.oneleague_get = (req, res) => { 
     League.findOne({ slug: req.params.slug }).then((leagues) => {
         Match.find({leagueId: leagues.id}).then((matches) => {
-            User.find({leagueId: leagues.id}).then((usersInLeague) =>{
+            User.find({leaguesId: leagues.id}).then((usersInLeague) =>{
                 res.status(200).render('league', {leagues: leagues, matches: matches, usersInLeague: usersInLeague})
             }).catch(error => {
                 res.status(500).render('404')
