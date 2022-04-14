@@ -2,22 +2,25 @@
 
 <%- include('partials/nav') %>
     
-<div>
+<div class="full-container-2">
     <h2><%= user.firstName %> <%= user.lastName %> Leagues</h2>
     <% if(user.admin) { %>
     <a href="/leagues/add">add league</a>
     <% } %> 
-    <div>
+    <div class="container-2">
         <% if(leagues.length > 0) { %>
             <% leagues.forEach(league => { %> 
-                <h3><a href="/league/<%=league.slug%>"><%= league.title %></a></h3>
-                <p>Created at: <%= league.createdAt.toLocaleDateString('en-GB') %></p>
+                <div class="card">
+                    <div class="card-box">
+                        <h3><a href="/league/<%=league.slug%>"><%= league.title %></a></h3>
+                        <p>Created at: <%= league.createdAt.toLocaleDateString('en-GB') %></p>
+                    </div>
+                </div>
             <% }) %> 
         <% } else { %>
             <p>There are no Leagues to display...</p>
         <% } %>
     </div>
-
 </div>
 
 <%- include('partials/footer') %>
