@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 
 <%- include('partials/nav') %>
-<div class="full-container">
+<div class="full-container-2">
     <h1>Match Page!</h1>
     <div>
         <h3><%= matches.title %></h3>
@@ -20,5 +20,18 @@
             <p>There are no Users to display...</p>
         <% } %>
     </div>
+
+    <div class="container">
+        <h2><i class="fa-solid fa-ranking-star"></i>  Ranks:</h2>
+        <h4><i class="fa-solid fa-trophy first-place"></i> First Place:</h4>
+        <p><%= firstPlace.firstName %> <%= firstPlace.lastName %></p>
+        <h4><i class="fa-solid fa-trophy second-place"></i> Second Place:</h4>
+        <p><%= secondPlace.firstName %> <%= secondPlace.lastName %></p>
+        <h4><i class="fa-regular fa-futbol KOG"></i> King of goals:</h4>
+        <p><%= KOG.firstName %> <%= KOG.lastName %></p>
+        <h4><i class="fa-solid fa-medal KOA"></i>  King of assists:</h4>
+        <p><%= KOA.firstName %> <%= KOA.lastName %></p>
+    </div>
+
 </div>
 <%- include('partials/footer') %>

@@ -220,7 +220,23 @@ module.exports.createMatch = async (req, res) => {
 module.exports.oneMatch_get = (req, res) => { 
     Match.findOne({ slug: req.params.slug }).then((matches) => {
         User.find({matchesId: matches.id}).then((usersInMatch) =>{
-            res.status(200).render('match', {matches: matches, usersInMatch: usersInMatch})
+            User.findOne({id: matches.firstPlace}).then((firstPlace) => {
+                User.findOne({id: matches.secondPlace}).then((secondPlace) => {
+                    User.findOne({id: matches.KOG}).then((KOG) => {
+                        User.findOne({id: matches.KOG}).then((KOA) => {
+                            res.status(200).render('match', {matches: matches, usersInMatch: usersInMatch, firstPlace, secondPlace, KOG, KOA})
+                        }).catch(error => {
+                            res.status(500).render('404')
+                        })
+                    }).catch(error => {
+                        res.status(500).render('404')
+                    })
+                }).catch(error => {
+                    res.status(500).render('404')
+                })
+            }).catch(error => {
+                res.status(500).render('404')
+            })
         }).catch(error => {
             res.status(500).render('404')
         })
