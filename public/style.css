@@ -298,11 +298,22 @@ a::before {
     #toggler:checked ~ .menu {
         max-height: 100%;
     }
-    .full-container .container {
+    .container {
         align-items: center;
         justify-content: center;
         text-align: center;
         margin: 10px 10%;
+    }
+
+    .container-2 {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 10px 10%;
+    }
+
+    .card-2{
+        margin-bottom: 20px;
     }
     
 }
