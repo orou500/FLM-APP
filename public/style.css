@@ -48,6 +48,11 @@ footer{
     font-size: 18px;
 }
 
+.delete {
+    background-color: #e74c3c;
+    color: whitesmoke;
+}
+
 .light-btn:focus {
     box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
 }
@@ -211,6 +216,22 @@ a::before {
       5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     transition: 0.5s;
+  }
+
+  .card-2 {
+    position: relative;
+    display: flex;
+    width: 300px;
+    height: 250px;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    transition: 0.5s;
+    margin: 0px 10px;
   }
 
   .card .card-box {
