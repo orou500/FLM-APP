@@ -1,12 +1,18 @@
 <%- include('partials/header') %>
 
 <%- include('partials/nav') %>
+<div class="full-container animate__animated animate__bounceIn animate__slow">
     <h1>Edit User Page!</h1>
         <form action="/user/edit/<%=user._id%>?_method=PUT" method="POST">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" required>
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" required>
-            <button type="submit">Submit</button>
+            <div class="input-container">
+                <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" required>
+                <label for="firstName">First Name</label>
+            </div>
+            <div class="input-container">
+                <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" required>
+                <label for="lastName">Last Name</label>
+            </div>
+            <button type="submit" class="light-btn">Submit</button>
         </form>
+</div>
 <%- include('partials/footer') %>
