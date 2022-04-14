@@ -12,7 +12,7 @@ const User = require('./models/User')
 const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth')
 
 
-mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@flm.pcjqa.mongodb.net/test`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
