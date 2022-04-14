@@ -5,7 +5,7 @@ const checkAuth = (req, res, next) => {
     const token = req.cookies.jwt
     
     try{
-        jwt.verify(token, process.env.JWT_KEY)
+        jwt.verify(token, 'MoSm0AbvcP7dj6MoSm0AbVMm0AbvcP')
         next()
     } catch(error) { 
         res.status(401).redirect('/login')
@@ -15,7 +15,7 @@ const checkAuth = (req, res, next) => {
 const checkUser = (req, res, next) => {
    const token = req.cookies.jwt;
    if(token) {
-       jwt.verify(token, process.env.JWT_KEY, async (err, decodedToken) => {
+       jwt.verify(token, 'MoSm0AbvcP7dj6MoSm0AbVMm0AbvcP', async (err, decodedToken) => {
            if(err) {
                console.log(err.message)
                res.locals.user = null
