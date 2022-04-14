@@ -2,25 +2,36 @@
 
 <%- include('partials/nav') %>
     
-<div>
+<div class="full-container animate__animated animate__bounceIn animate__slow">
     <h2>Add Match</h2>
-
-    <form action="/leagues/addmatch?_method=POST" method="post">
-        <label for="title">Title:</label>
-        <input type="text" name="title" id="title" required>
-        <label for="firstPlace">First Place:</label>
-        <input type="text" name="firstPlace" id="firstPlace" required>
-        <label for="secondPlace">Second Place:</label>
-        <input type="text" name="secondPlace" id="secondPlace" required>
-        <label for="KOG">King of goals:</label>
-        <input type="text" name="KOG" id="KOG" required>
-        <label for="KOA">King of assist:</label>
-        <input type="text" name="KOA" id="KOA" required>
-        <div class="title error"></div>
-        <input type="hidden" name="userId" id="userId" value="<%= user.id %>" readonly>
-        <input type="hidden" name="leagueId" id="leagueId" value="<%=id%>" readonly>
-        <button>Add Match</button>
-    </form>
+    <div class="container-2">
+            <form action="/leagues/addmatch?_method=POST" method="post">
+                <div class="input-container">
+                    <input type="text" name="title" id="title" required>
+                    <label for="title">Title</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="firstPlace" id="firstPlace" required>
+                    <label for="firstPlace">First Place</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="secondPlace" id="secondPlace" required>
+                    <label for="secondPlace">Second Place</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="KOG" id="KOG" required>
+                    <label for="KOG">King of goals</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" name="KOA" id="KOA" required>
+                    <label for="KOA">King of assist</label>
+                </div>
+                <div class="title error"></div>
+                <input type="hidden" name="userId" id="userId" value="<%= user.id %>" readonly>
+                <input type="hidden" name="leagueId" id="leagueId" value="<%=id%>" readonly>
+                <button class="light-btn">Add Match</button>
+            </form>
+    </div>
 </div>
 
 <script>
