@@ -6,10 +6,14 @@
     <h1>League Page!</h1>
     <h3><%= leagues.title %></h3>
     <p>Created at: <%= leagues.createdAt.toLocaleDateString('en-GB') %></p>
-        <% if(user.admin) { %>
-            <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
-            <a href="/league/edit/<%=leagues.id%>">Edit</a>
-        <% } %> 
+        <% usersInLeague.forEach(userInLeague => { %> 
+            <% if(userInLeague.id === user.id) { %>
+                <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
+            <% } %>
+        <% }) %> 
+            <% if(user.admin) { %>
+                <a href="/league/edit/<%=leagues.id%>">Edit</a>
+            <% } %> 
         <div class="container">
             <h3>Users In League:</h3>
             <% if(usersInLeague.length > 0) { %>
