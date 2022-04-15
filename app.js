@@ -60,9 +60,11 @@ app.get('/user/edit/:id', async (req, res) => {
 app.get('/leagues/add', checkAuth, checkIfAdmin, (req, res) => {
     res.render('addleague')
 })
-app.get('/leagues/:id/addmatch', checkAuth, checkIfAdmin, (req, res) => {
+app.get('/leagues/:id/addmatch', checkAuth, (req, res) => {
     let id = req.params.id
-    res.render('addmatch', {id})
+    User.find({leaguesId: id}).then((usersInLeague) =>{
+        res.render('addmatch', {id, usersInLeague})
+    })
 })
 app.get('/league/edit/:id', checkIfAdmin,async (req, res) => {
     const league = await League.findById(req.params.id)
