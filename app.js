@@ -70,9 +70,11 @@ app.get('/league/edit/:id', checkIfAdmin,async (req, res) => {
     const league = await League.findById(req.params.id)
     res.render('editleague', {league: league});
 })
-app.get('/league/match/edit/:id', checkIfAdmin,async (req, res) => {
+app.get('/league/match/edit/:id', checkAuth,async (req, res) => {
     const match = await Match.findById(req.params.id)
-    res.render('editmatch', {match: match});
+    User.find({matchesId: req.params.id}).then((usersInMatches) =>{
+        res.render('editmatch', {match: match, usersInMatches});
+    })
 })
 app.use(authRoutes)
 app.use(leagueRoutes)

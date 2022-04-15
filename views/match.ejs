@@ -6,9 +6,11 @@
     <div>
         <h3><%= matches.title %></h3>
         <p>Created at: <%= matches.createdAt.toLocaleDateString('en-GB') %></p>
-        <% if(user.admin) { %>
-            <a href="/league/match/edit/<%=matches.id%>">Edit</a>
-        <% } %>
+        <% usersInMatch.forEach(userInMatch => { %> 
+            <% if(userInMatch.id === user.id) { %>
+                <a href="/league/match/edit/<%=matches.id%>">Edit</a>
+            <% } %>
+        <% }) %> 
     </div>
     <div>
         <h3>Users In Match:</h3>
