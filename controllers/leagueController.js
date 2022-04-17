@@ -160,56 +160,35 @@ module.exports.createMatch = async (req, res) => {
                                 res.status(500).render('404')
                             }
                         })
-                        User.findOneAndUpdate({"_id": usersFP}, { $addToSet: { "matchesId": match._id, } }, function(err){
+                        User.findOneAndUpdate({"_id": usersFP}, { $addToSet: { "matchesId": match._id, "firstPlaces": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
                                 res.status(500).render('404')
                             }
                         })
-                        User.findOneAndUpdate({"_id": usersSP}, { $addToSet: { "matchesId": match._id, } }, function(err){
+                        User.findOneAndUpdate({"_id": usersSP}, { $addToSet: { "matchesId": match._id, "secondPlaces": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
                                 res.status(500).render('404')
                             }
                         })
-                        User.findOneAndUpdate({"_id": usersKOG}, { $addToSet: { "matchesId": match._id, } }, function(err){
+                        User.findOneAndUpdate({"_id": usersKOG}, { $addToSet: { "matchesId": match._id, "KOG": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
                                 res.status(500).render('404')
                             }
                         })
-                        User.findOneAndUpdate({"_id": usersKOA}, { $addToSet: { "matchesId": match._id, } }, function(err){
+                        User.findOneAndUpdate({"_id": usersKOA}, { $addToSet: { "matchesId": match._id, "KOA": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
                                 res.status(500).render('404')
                             }
                         })
-                        League.findOneAndUpdate({"_id": leagueId}, { $addToSet: { "matchesId": match._id } }, function(err){
+                        League.findOneAndUpdate({"_id": leagueId}, { $addToSet: { "matchesId": match._id, "firstPlaces": usersFP, "secondPlaces": usersSP, "KOG": usersKOG, "KOA": usersKOA} }, function(err){
                             if(err){
                                 res.status(500).render('404')
                             }
                         })
-                        Match.findOneAndUpdate({"_id": match._id}, { $addToSet: { "usersId": usersFP } }, function(err){
-                            if(err){
-                                res.status(500).render('404')
-                            }
-                        })
-                        Match.findOneAndUpdate({"_id": match._id}, { $addToSet: { "usersId": usersSP } }, function(err){
-                            if(err){
-                                res.status(500).render('404')
-                            }
-                        })
-                        Match.findOneAndUpdate({"_id": match._id}, { $addToSet: { "usersId": usersKOG } }, function(err){
-                            if(err){
-                                res.status(500).render('404')
-                            }
-                        })
-                        Match.findOneAndUpdate({"_id": match._id}, { $addToSet: { "usersId": usersKOA } }, function(err){
-                            if(err){
-                                res.status(500).render('404')
-                            }
-                            res.status(201).redirect('leagues')
-                        })
-                        
+                        res.status(201).redirect('leagues')
                     } catch (err) {
                         const errors = handleErrors(err)
-                        res.status(400).json({ errors })
+                        res.status(201).redirect('leagues')
                     }
                 })
             })
@@ -286,7 +265,7 @@ module.exports.deleteMatch = async (req, res) => {
     Match.findByIdAndDelete(req.params.id).then(() => {
         User.updateMany(
             { },
-            { $pull : {matchesId: req.params.id} },
+            { $pull : {matchesId: req.params.id, firstPlaces: req.params.id, secondPlaces: req.params.id, KOG: req.params.id, KOA: req.params.id } },
             function(err, data) { 
                 if(err){
                     res.status(500).render('404')
@@ -294,7 +273,7 @@ module.exports.deleteMatch = async (req, res) => {
              })
              League.updateMany(
                 { },
-                { $pull : {matchesId: req.params.id} },
+                { $pull : {matchesId: req.params.id, firstPlaces: req.params.id, secondPlaces: req.params.id, KOG: req.params.id, KOA: req.params.id} },
                 function(err, data) { 
                     if(err){
                         res.status(500).render('404')

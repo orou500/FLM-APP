@@ -37,6 +37,22 @@ const userSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref: 'match'
     }],
+    firstPlaces: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    secondPlaces: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    KOG: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    KOA: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
 },
 {
     timestamps: true,
