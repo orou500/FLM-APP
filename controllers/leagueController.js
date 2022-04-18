@@ -157,38 +157,38 @@ module.exports.createMatch = async (req, res) => {
                         const match = await Match.create({ title, slug, usersId , leagueId, firstPlace: usersFP, secondPlace: usersSP, KOG: usersKOG, KOA: usersKOA })
                         User.findOneAndUpdate({"_id": usersId}, { $addToSet: { "matchesId": match._id, } }, function(err){
                             if(err){
-                                res.status(500).render('404')
+                                return res.status(500).render('404')
                             }
                         })
                         User.findOneAndUpdate({"_id": usersFP}, { $addToSet: { "matchesId": match._id, "firstPlaces": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
-                                res.status(500).render('404')
+                            return res.status(500).render('404')
                             }
                         })
                         User.findOneAndUpdate({"_id": usersSP}, { $addToSet: { "matchesId": match._id, "secondPlaces": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
-                                res.status(500).render('404')
+                                return res.status(500).render('404')
                             }
                         })
                         User.findOneAndUpdate({"_id": usersKOG}, { $addToSet: { "matchesId": match._id, "KOG": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
-                                res.status(500).render('404')
+                                return res.status(500).render('404')
                             }
                         })
                         User.findOneAndUpdate({"_id": usersKOA}, { $addToSet: { "matchesId": match._id, "KOA": match._id, "leaguesId": leagueId} }, function(err){
                             if(err){
-                                res.status(500).render('404')
+                                return res.status(500).render('404')
                             }
                         })
                         League.findOneAndUpdate({"_id": leagueId}, { $addToSet: { "matchesId": match._id, "firstPlaces": usersFP, "secondPlaces": usersSP, "KOG": usersKOG, "KOA": usersKOA} }, function(err){
                             if(err){
-                                res.status(500).render('404')
+                                return res.status(500).render('404')
                             }
                         })
-                        res.status(201).redirect('leagues')
+                        return res.status(201).render('leagues')
                     } catch (err) {
                         const errors = handleErrors(err)
-                        res.status(201).redirect('leagues')
+                        return res.status(201).render('leagues')
                     }
                 })
             })
