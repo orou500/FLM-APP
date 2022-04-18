@@ -10,6 +10,7 @@ const League = require('./models/League')
 const Match = require('./models/Match')
 const User = require('./models/User')
 const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth')
+const jwt = require('jsonwebtoken');
 
 
 mongoose.connect(`mongodb+srv://sizex:1qa2ws3ed@league.jbqmf.mongodb.net/test`, {
@@ -74,6 +75,29 @@ app.get('/league/match/edit/:id', checkAuth,async (req, res) => {
     const match = await Match.findById(req.params.id)
     User.find({matchesId: req.params.id}).then((usersInMatches) =>{
         res.render('editmatch', {match: match, usersInMatches});
+    })
+})
+app.get('/user/verify/:id', (req, res) => {
+    let id = req.params.id
+    User.findOne({id}).then((user) =>{
+        if(user.verify === false){
+            res.status(500).render('404')
+        }
+        User.findByIdAndUpdate(user.id,{$set:{verify: true}}, function(err){
+            if(err){
+                console.log(err)
+                res.status(500).render('404')
+            }
+            const maxAge = 3 * 24 * 60 * 60
+            const createToken = (id) => {
+                return jwt.sign({ id }, process.env.JWT_KEY, {
+                    expiresIn: maxAge,
+                })
+            }
+            const token = createToken(user._id)
+            res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+            res.render('Verify', {user})
+        })
     })
 })
 app.use(authRoutes)
