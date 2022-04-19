@@ -241,7 +241,7 @@ a::before {
     right: 20px;
     bottom: 20px;
     background: #2a2b2f;
-    color: whitesmoke;
+    color: #dfe6e9;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -251,7 +251,7 @@ a::before {
     transition: 0.5s;
   }
   .card .card-box a{
-    color: whitesmoke;
+    color: #dfe6e9;
   }
 
   .card .card-box:hover {
@@ -290,8 +290,15 @@ a::before {
 th, td {
     padding: 10px;
     border-radius: 5px;
-
 }
+
+table tr:nth-child(odd) td{
+    background-color: #3c94e7;
+}
+table tr:nth-child(even) td{
+    background-color: #dfe6e9;
+}
+
 
 .wpos{
 	text-align: center;
@@ -316,7 +323,6 @@ table .col{
 .pos:hover td{
 	color: #000000;
 }
-
 @media  screen and (max-width: 600px) {
     .menu {
         width: 100%;
