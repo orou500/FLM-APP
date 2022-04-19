@@ -78,8 +78,7 @@ app.get('/league/match/edit/:id', checkAuth,async (req, res) => {
     })
 })
 app.get('/user/verify/:id', (req, res) => {
-    let id = req.params.id
-    User.findOne({id}).then((user) =>{
+    User.findById({_id: req.params.id}).then((user) =>{
         if(user.verify === true){
            return res.status(500).render('404')
         }
