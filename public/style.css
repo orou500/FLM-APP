@@ -283,6 +283,40 @@ a::before {
     color: silver;
 }
 
+.ptable{
+	margin: 0px 0% 30px 0%;
+}
+
+th, td {
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.wpos{
+	text-align: center;
+}
+
+table .col{
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.wpos:hover{
+	background-color: #2a2b2f;
+}
+
+.wpos:hover td{
+	color: #FFFFFF;
+}
+
+.pos:hover{
+	background-color: #ff7b21;
+}
+
+.pos:hover td{
+	color: #000000;
+}
+
 @media  screen and (max-width: 600px) {
     .menu {
         width: 100%;

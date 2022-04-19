@@ -25,6 +25,58 @@
             <% } %>
         </div>
         <div class="container-2">
+            <div class="ptable">
+                <h3>League Tables :</h3>
+                <table>
+                    <tr class="col">
+                        <th>Users</th>
+                        <th>1st</th>
+                        <th>2nd</th>
+                        <th>KOG</th>
+                        <th>KOA</th>
+                        <th>Points</th>
+                    </tr>
+            <% if(leagues.usersId.length > 0) { %> 
+                <% usersInLeague.forEach(userInLeague => { %>
+                    <% let store = 0 %>
+                    <% let firstplace = 0 %>
+                    <% let secondplace = 0 %>
+                    <% let KOG = 0 %>
+                    <% let KOA = 0 %>
+                    <% matches.forEach(match => { %> 
+                        <% if(userInLeague.id == match.firstPlace) { %> 
+                            <% store += 4 %>
+                            <% firstplace += 1 %>
+                        <% } %>
+                        <% if(userInLeague.id == match.secondPlace) { %> 
+                            <% store += 3 %>
+                            <% secondplace += 1 %>
+                        <% } %>
+                        <% if(userInLeague.id == match.KOG) { %> 
+                            <% store += 2 %>
+                            <% KOG += 1 %>
+                        <% } %>
+                        <% if(userInLeague.id == match.KOA) { %> 
+                            <% store += 2 %>
+                            <% KOA += 1 %>
+                        <% } %>
+                    <% }) %>
+                        <tr class="wpos">
+                            <td><%= userInLeague.firstName %> <%= userInLeague.lastName %></td>
+                            <td><%= firstplace %></td>
+                            <td><%= secondplace %></td>
+                            <td><%= KOG %></td>
+                            <td><%= KOA %></td>
+                            <td><%= store %></td>
+                        </tr>
+                <% }) %>
+                    </table>
+                </div>
+            <% } else { %>
+                <p>There are no Players to display...</p>
+            <% } %>
+        </div>
+        <div class="container-2">
         <% if(matches.length > 0) { %>
             <% matches.forEach(match => { %> 
                 <div class="card">
