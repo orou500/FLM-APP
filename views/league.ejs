@@ -26,7 +26,7 @@
         </div>
         <div class="container-2">
             <div class="ptable">
-                <h3>League Tables :</h3>
+                <h3>League Tables :  <i class="fa-solid fa-question"></i></h3>
                 <table>
                     <tr class="col">
                         <th>Users</th>
@@ -90,6 +90,12 @@
             <p>There are no Matches to display...</p>
         <% } %>
         </div>
+        <div class="toast-box">
+            <i class="fa-solid fa-check"></i>
+            <p>Here you can see the points based on the matches statistics.</p>
+            <button class="cancel-btn"><i class="fa-solid fa-xmark"></i></button>
+            <p class="seconds">10s</p>
+        </div>
 </div>
 <%- include('partials/footer') %>
 
@@ -111,4 +117,40 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
     window.onload = function() {
         (document.getElementsByTagName( 'th' )[4]).click();
     };
+
+    const btn = document.querySelector('.fa-question')
+    const cancel_btn = document.querySelector('.cancel-btn')
+    const toast_box = document.querySelector('.toast-box')
+    const seconds = document.querySelector('.seconds')
+    let time = 10
+    let interval
+    let timeout
+
+    btn.addEventListener('click', () => {
+        btn.setAttribute('disabled', '')
+        time = 10
+        toast_box.style.transform = `translate(0%)`
+            interval = setInterval(() => {
+            time -=1;
+            seconds.innerHTML = `${time}s`
+        }, 1000)
+
+        timeout = setTimeout(() => {
+            toast_box.style.transform = `translate(110%)`
+            time = 10;
+            seconds.innerHTML = `${time}s`
+            clearInterval(interval)
+            btn.removeAttribute('disabled', '')
+        }, 10000)
+    })
+
+    cancel_btn.addEventListener('click', () => {
+        btn.removeAttribute('disabled', '')
+        toast_box.style.transform = `translate(110%)`
+        time = 10;
+        seconds.innerHTML = `${time}s`
+        clearInterval(interval)
+        clearTimeout(timeout)
+    })
+
 </script>

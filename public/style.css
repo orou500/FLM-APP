@@ -292,6 +292,10 @@ th, td {
     border-radius: 5px;
 }
 
+th{
+    cursor: pointer;
+}
+
 table tr:nth-child(odd) td{
     background-color: #3c94e7;
 }
@@ -308,21 +312,61 @@ table .col{
 	border-bottom: 1px solid #FFFFFF;
 }
 
-.wpos:hover{
-	background-color: #2a2b2f;
-}
-
 .wpos:hover td{
 	color: #FFFFFF;
 }
 
-.pos:hover{
-	background-color: #ff7b21;
+.fa-question {
+    border-radius: 43%;
+    border: 2px solid black;
+    padding: 3px;
+    font-size: 12px;
 }
 
-.pos:hover td{
-	color: #000000;
+.fa-question:hover {
+    cursor: pointer;
 }
+
+.toast-box{
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    width: 300px;
+    padding: 20px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 50px #000020;
+    display: flex;
+    align-items: center;
+    transform: translate(110%);
+    transition: all .9s;
+}
+
+.toast-box p {
+    padding-left: 10px;
+}
+
+.cancel-btn {
+    position: absolute;
+    top: -40%;
+    right: 0;
+    padding: 2px 15px;
+    font-size: 1.8em;
+    background: #F0A500;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 50px #f0a4003e;
+    cursor: pointer;
+}
+
+.seconds{
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: .8em;
+}
+
 @media  screen and (max-width: 600px) {
     .menu {
         width: 100%;
