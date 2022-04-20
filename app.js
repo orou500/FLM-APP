@@ -89,7 +89,7 @@ app.get('/user/verify/:id', (req, res) => {
             }
             const maxAge = 3 * 24 * 60 * 60
             const createToken = (id) => {
-                return jwt.sign({ id }, process.env.JWT_KEY, {
+                return jwt.sign({ id }, 'MoSm0AbvcP7dj6MoSm0AbVMm0AbvcP', {
                     expiresIn: maxAge,
                 })
             }
