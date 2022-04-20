@@ -10,6 +10,7 @@ const League = require('./models/League')
 const Match = require('./models/Match')
 const User = require('./models/User')
 const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth')
+const jwt = require('jsonwebtoken');
 
 
 mongoose.connect(`mongodb+srv://sizex:weRGh3vuw6fUwYgIN4vBvuwhu8I0@flm.pcjqa.mongodb.net/test`, {
@@ -60,17 +61,43 @@ app.get('/user/edit/:id', async (req, res) => {
 app.get('/leagues/add', checkAuth, checkIfAdmin, (req, res) => {
     res.render('addleague')
 })
-app.get('/leagues/:id/addmatch', checkAuth, checkIfAdmin, (req, res) => {
+app.get('/leagues/:id/addmatch', checkAuth, (req, res) => {
     let id = req.params.id
-    res.render('addmatch', {id})
+    User.find({leaguesId: id}).then((usersInLeague) =>{
+        res.render('addmatch', {id, usersInLeague})
+    })
 })
 app.get('/league/edit/:id', checkIfAdmin,async (req, res) => {
     const league = await League.findById(req.params.id)
     res.render('editleague', {league: league});
 })
-app.get('/league/match/edit/:id', checkIfAdmin,async (req, res) => {
+app.get('/league/match/edit/:id', checkAuth,async (req, res) => {
     const match = await Match.findById(req.params.id)
-    res.render('editmatch', {match: match});
+    User.find({matchesId: req.params.id}).then((usersInMatches) =>{
+        res.render('editmatch', {match: match, usersInMatches});
+    })
+})
+app.get('/user/verify/:id', (req, res) => {
+    User.findById({_id: req.params.id}).then((user) =>{
+        if(user.verify === true){
+           return res.status(500).render('404')
+        }
+        User.findByIdAndUpdate(user.id,{$set:{verify: true}}, function(err){
+            if(err){
+                console.log(err)
+                res.status(500).render('404')
+            }
+            const maxAge = 3 * 24 * 60 * 60
+            const createToken = (id) => {
+                return jwt.sign({ id }, process.env.JWT_KEY, {
+                    expiresIn: maxAge,
+                })
+            }
+            const token = createToken(user._id)
+            res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+            res.render('Verify', {user})
+        })
+    })
 })
 app.use(authRoutes)
 app.use(leagueRoutes)

@@ -3,9 +3,11 @@
 <%- include('partials/nav') %>
 <div class="full-container-2 animate__animated animate__bounceIn animate__slow">
     <h1>Edit Match Page!</h1>
+    <% if(user.admin) { %>
     <form action="/league/match/<%= match.id %>?_method=DELETE" method="POST">
         <button type="submit" class="light-btn delete">Delete</button>
     </form>
+    <% } %> 
     <div class="container-2">
         <div class="card-2">
             <form action="/league/match/edit/<%=match._id%>?_method=PUT" method="POST">
@@ -16,6 +18,8 @@
                 <button type="submit" class="light-btn">Submit</button>
             </form>
         </div>
+        <% usersInMatches.forEach(usersInMatch => { %> 
+            <% if(usersInMatch.id === user.id) { %>
         <div class="card-2">
             <form action="/league/match/<%= match.id %>/adduser?_method=POST" method="POST">
                 <div class="input-container">
@@ -25,6 +29,7 @@
                 <button type="submit" class="light-btn">Add User</button>
             </form>
         </div>
+        <% }}) %>
     </div>
     <p>Last update: <%= match.updatedAt.toLocaleDateString('en-GB') %></p>
 </div>

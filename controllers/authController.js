@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 //handle Errors
 const handleErrors = (err) => {
@@ -37,13 +38,41 @@ module.exports.login_get = (req, res) => {
     res.render('login')
 }
 
+
 module.exports.register_post = async (req, res) => {
     const { email, password, firstName, lastName, admin } = req.body
     try{
         //create the user in DB
         const user = await User.create({ email, password, firstName, lastName, admin })
         const token = createToken(user._id)
-        res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+        //res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
+
+        let mailTransporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'flmappmail@gmail.com',
+                pass: '388993164Or*'
+            }
+        });
+        let mailDetails = {
+            from: 'flmappmail@gmail.com',
+            to: `${user.email}`,
+            subject: `Hi ${user.firstName}, Please verify your user.`,
+            text: `
+            Hi ${user.firstName}, Please verify your user.
+            link: http://${req.headers.host}/user/verify/${user.id}/
+            `
+        };
+
+        mailTransporter.sendMail(mailDetails, function(err, data) {
+            if(err) {
+                console.log('Error Occurs');
+            } else {
+                console.log('Email sent successfully');
+                res.status(201).json({user: user._id})
+            }
+        });
+
         res.status(201).json({user: user._id})
     } catch (err) {
         const errors = handleErrors(err)
@@ -62,6 +91,9 @@ module.exports.login_post = (req, res) => {
 
         bcrypt.compare(password, user.password, (error, result) => {
             if(error){
+                return res.status(401).render('login');
+            }
+            if(!user.verify){
                 return res.status(401).render('login');
             }
 
@@ -83,7 +115,7 @@ module.exports.logout_get = (req, res) => {
 }
 
 module.exports.updateUser = (req, res) => { 
-    User.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true}, function(err){
+    User.findByIdAndUpdate(req.params.id,{$set:req.body}, function(err){
         if(err){
             res.status(500).render('404')
         }

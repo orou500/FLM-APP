@@ -241,7 +241,7 @@ a::before {
     right: 20px;
     bottom: 20px;
     background: #2a2b2f;
-    color: whitesmoke;
+    color: #dfe6e9;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -251,7 +251,7 @@ a::before {
     transition: 0.5s;
   }
   .card .card-box a{
-    color: whitesmoke;
+    color: #dfe6e9;
   }
 
   .card .card-box:hover {
@@ -281,6 +281,90 @@ a::before {
 
 .KOA {
     color: silver;
+}
+
+.ptable{
+	margin: 0px 0% 30px 0%;
+}
+
+th, td {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+th{
+    cursor: pointer;
+}
+
+table tr:nth-child(odd) td{
+    background-color: #3c94e7;
+}
+table tr:nth-child(even) td{
+    background-color: #dfe6e9;
+}
+
+
+.wpos{
+	text-align: center;
+}
+
+table .col{
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.wpos:hover td{
+	color: #FFFFFF;
+}
+
+.fa-question {
+    border-radius: 43%;
+    border: 2px solid black;
+    padding: 3px;
+    font-size: 12px;
+}
+
+.fa-question:hover {
+    cursor: pointer;
+}
+
+.toast-box{
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    width: 300px;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    transform: translate(110%);
+    transition: all .9s;
+}
+
+.toast-box p {
+    padding-left: 10px;
+}
+
+.cancel-btn {
+    position: absolute;
+    top: -40%;
+    right: 0;
+    padding: 2px 15px;
+    font-size: 1.8em;
+    background: #3c94e7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 50px #f0a4003e;
+    cursor: pointer;
+}
+
+.seconds{
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: .8em;
 }
 
 @media  screen and (max-width: 600px) {

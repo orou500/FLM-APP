@@ -6,10 +6,14 @@
     <h1>League Page!</h1>
     <h3><%= leagues.title %></h3>
     <p>Created at: <%= leagues.createdAt.toLocaleDateString('en-GB') %></p>
-        <% if(user.admin) { %>
-            <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
-            <a href="/league/edit/<%=leagues.id%>">Edit</a>
-        <% } %> 
+        <% usersInLeague.forEach(userInLeague => { %> 
+            <% if(userInLeague.id === user.id) { %>
+                <a href="/leagues/<%=leagues.id%>/addmatch">Add Match</a>
+            <% } %>
+        <% }) %> 
+            <% if(user.admin) { %>
+                <a href="/league/edit/<%=leagues.id%>">Edit</a>
+            <% } %> 
         <div class="container">
             <h3>Users In League:</h3>
             <% if(usersInLeague.length > 0) { %>
@@ -18,6 +22,58 @@
                 <% }) %> 
             <% } else { %>
                 <p>There are no Users to display...</p>
+            <% } %>
+        </div>
+        <div class="container-2">
+            <div class="ptable">
+                <h3>League Tables :  <i class="fa-solid fa-question"></i></h3>
+                <table>
+                    <tr class="col">
+                        <th>Users</th>
+                        <th>1st</th>
+                        <th>2nd</th>
+                        <th>KOG</th>
+                        <th>KOA</th>
+                        <th>Points</th>
+                    </tr>
+            <% if(leagues.usersId.length > 0) { %> 
+                <% usersInLeague.forEach(userInLeague => { %>
+                    <% let store = 0 %>
+                    <% let firstplace = 0 %>
+                    <% let secondplace = 0 %>
+                    <% let KOG = 0 %>
+                    <% let KOA = 0 %>
+                    <% matches.forEach(match => { %> 
+                        <% if(userInLeague.id == match.firstPlace) { %> 
+                            <% store += 4 %>
+                            <% firstplace += 1 %>
+                        <% } %>
+                        <% if(userInLeague.id == match.secondPlace) { %> 
+                            <% store += 3 %>
+                            <% secondplace += 1 %>
+                        <% } %>
+                        <% if(userInLeague.id == match.KOG) { %> 
+                            <% store += 2 %>
+                            <% KOG += 1 %>
+                        <% } %>
+                        <% if(userInLeague.id == match.KOA) { %> 
+                            <% store += 1 %>
+                            <% KOA += 1 %>
+                        <% } %>
+                    <% }) %>
+                        <tr class="wpos">
+                            <td><%= userInLeague.firstName %> <%= userInLeague.lastName %></td>
+                            <td><%= firstplace %></td>
+                            <td><%= secondplace %></td>
+                            <td><%= KOG %></td>
+                            <td><%= KOA %></td>
+                            <td><%= store %></td>
+                        </tr>
+                <% }) %>
+                    </table>
+                </div>
+            <% } else { %>
+                <p>There are no Players to display...</p>
             <% } %>
         </div>
         <div class="container-2">
@@ -34,5 +90,67 @@
             <p>There are no Matches to display...</p>
         <% } %>
         </div>
+        <div class="toast-box">
+            <i class="fa-solid fa-check"></i>
+            <p>Here you can see all players points based on Matches statistics.</p>
+            <button class="cancel-btn"><i class="fa-solid fa-xmark"></i></button>
+            <p class="seconds">10s</p>
+        </div>
 </div>
 <%- include('partials/footer') %>
+
+<script>
+    const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+// do the work...
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+})));
+
+    window.onload = function() {
+        (document.getElementsByTagName( 'th' )[4]).click();
+    };
+
+    const btn = document.querySelector('.fa-question')
+    const cancel_btn = document.querySelector('.cancel-btn')
+    const toast_box = document.querySelector('.toast-box')
+    const seconds = document.querySelector('.seconds')
+    let time = 10
+    let interval
+    let timeout
+
+    btn.addEventListener('click', () => {
+        btn.setAttribute('disabled', '')
+        time = 10
+        toast_box.style.transform = `translate(0%)`
+            interval = setInterval(() => {
+            time -=1;
+            seconds.innerHTML = `${time}s`
+        }, 1000)
+
+        timeout = setTimeout(() => {
+            toast_box.style.transform = `translate(110%)`
+            time = 10;
+            seconds.innerHTML = `${time}s`
+            clearInterval(interval)
+            btn.removeAttribute('disabled', '')
+        }, 10000)
+    })
+
+    cancel_btn.addEventListener('click', () => {
+        btn.removeAttribute('disabled', '')
+        toast_box.style.transform = `translate(110%)`
+        time = 10;
+        seconds.innerHTML = `${time}s`
+        clearInterval(interval)
+        clearTimeout(timeout)
+    })
+
+</script>

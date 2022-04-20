@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter your last name'],
         minlength: [2, 'last name must be at least 2 charcters'],
     },
+    verify: {
+        type: Boolean, 
+        default: false
+    },
     admin: {
         type: Boolean, 
         default: false
@@ -34,6 +38,22 @@ const userSchema = new mongoose.Schema({
         ref: 'league'
     }],
     matchesId: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    firstPlaces: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    secondPlaces: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    KOG: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref: 'match'
+    }],
+    KOA: [{
         type : mongoose.Schema.Types.ObjectId,
         ref: 'match'
     }],
