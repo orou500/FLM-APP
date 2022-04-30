@@ -199,7 +199,7 @@ module.exports.createMatch = async (req, res) => {
 module.exports.oneMatch_get = (req, res) => { 
     Match.findOne({ slug: req.params.slug }).then((matches) => {
         User.find({matchesId: matches.id}).then((usersInMatch) =>{
-            User.findOne({id: matches.firstPlace}).then((firstPlace) => {
+            User.findOne({"_id": matches.firstPlace}).then((firstPlace) => {
                 User.findOne({"_id": matches.secondPlace}).then((secondPlace) => {
                     User.findOne({"_id": matches.KOG}).then((KOG) => {
                         User.findOne({"_id": matches.KOA}).then((KOA) => {
