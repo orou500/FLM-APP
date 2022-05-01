@@ -50,6 +50,7 @@ email: test4@mail.com  --> Password: test123
 ## 📝 Usage/Examples
 
 - Open the app in two browsers. (you can open the app in any browser that you want).
+- Register, verfiy and login to your user.
 - Add new league and see in leagues route that the page updates on real time.
 - Add matches to the league (FirstPlace, SecondPlace, KOG and KOA inputs gets users emails).
 - See the league table changes according to the matches statistics.
