@@ -1,7 +1,0 @@
-{
-    "env": {
-        "MONGO_USERNAME": "sizex",
-        "MONGO_PASSWORD": "weRGh3vuw6fUwYgIN4vBvuwhu8I0",
-        "JWT_KEY": "MoSm0AbvcP7dj6MoSm0AbVMm0AbvcP"
-    }
-}
