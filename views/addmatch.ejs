@@ -69,6 +69,7 @@
 
             }
             if(!data.errors){
+                socket.emit('newMatch', title)
                 window.location.replace("/");
             }
         }

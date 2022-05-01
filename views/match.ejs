@@ -37,3 +37,11 @@
 
 </div>
 <%- include('partials/footer') %>
+
+<script>
+    socket.on('newMatch', function() {
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 1000);
+    });
+</script>

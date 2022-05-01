@@ -5,7 +5,7 @@
     <h1>Edit Match Page!</h1>
     <% if(user.admin) { %>
     <form action="/league/match/<%= match.id %>?_method=DELETE" method="POST">
-        <button type="submit" class="light-btn delete">Delete</button>
+        <button id="deleteMatch" type="submit" class="light-btn delete">Delete</button>
     </form>
     <% } %> 
     <div class="container-2">
@@ -15,7 +15,7 @@
                     <input type="text" id="title" name="title" value="<%= match.title %>" required>
                     <label for="title">Title</label>
                 </div>
-                <button type="submit" class="light-btn">Submit</button>
+                <button id="updateMatch" type="submit" class="light-btn">Submit</button>
             </form>
         </div>
         <% usersInMatches.forEach(usersInMatch => { %> 
@@ -26,7 +26,7 @@
                     <input type="text" id="email" name="email" required>
                     <label for="email">User email</label>
                 </div>
-                <button type="submit" class="light-btn">Add User</button>
+                <button id="addUserToMatch" type="submit" class="light-btn">Add User</button>
             </form>
         </div>
         <% }}) %>
@@ -34,3 +34,15 @@
     <p>Last update: <%= match.updatedAt.toLocaleDateString('en-GB') %></p>
 </div>
 <%- include('partials/footer') %>
+
+<script>
+    document.getElementById('deleteMatch').addEventListener("click", function() {
+        socket.emit('deletedMatch')
+    });
+    document.getElementById('updateMatch').addEventListener("click", function() {
+        socket.emit('updateMatch')
+    });
+    document.getElementById('addUserToMatch').addEventListener("click", function() {
+        socket.emit('updateMatch')
+    });
+</script>
