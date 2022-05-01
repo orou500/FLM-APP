@@ -9,7 +9,7 @@ Choose who first place, second place, king of goals and king of assists.
 
 ![image](https://media.giphy.com/media/eN0zxvgFPGH98I49Li/giphy.gif)
 
-## Features
+## 💡 Features
 
 - Authentication
 - Leagues
@@ -18,13 +18,13 @@ Choose who first place, second place, king of goals and king of assists.
 - Cross platform
 
 
-## Tech Stack
+## ⚙️ Tech Stack
 
 **Server:** Node JS.
 
 **Dependencies:** Express, mongoose, ejs, nodemon, socket.io, jsonwebtoken, validator, bcrypt, cookie-parser, animate.css, method-override,
  morgan, nodemailer, slugify.
-## Demo
+## 🕹 Demo
 
 **Step 1:**
 
@@ -47,7 +47,7 @@ email: test2@mail.com  --> Password: test123
 email: test3@mail.com  --> Password: test123
 
 email: test4@mail.com  --> Password: test123
-## Usage/Examples
+## 📝 Usage/Examples
 
 - Open the app in two browsers. (you can open the app in any browser that you want).
 - Add new league and see in leagues route that the page updates on real time.
