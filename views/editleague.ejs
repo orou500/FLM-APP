@@ -4,7 +4,7 @@
 <div class="full-container-2 animate__animated animate__bounceIn animate__slow">
     <h1>Edit League Page!</h1>
     <form action="/league/<%= league.id %>?_method=DELETE" method="POST">
-        <button type="submit" class="light-btn delete">Delete League</button>
+        <button id="deleteLeague" type="submit" class="light-btn delete">Delete League</button>
     </form>
     <div class="container-2">
         <div class="card-2">
@@ -13,7 +13,7 @@
                     <input type="text" id="title" name="title" value="<%= league.title %>" required>
                     <label for="title">Title</label>
                 </div>
-                <button type="submit" class="light-btn">Submit</button>
+                <button id="upadteLeague" type="submit" class="light-btn">Submit</button>
             </form>
         </div>
         <div class="card-2">
@@ -22,7 +22,7 @@
                     <input type="text" id="email" name="email" required>
                     <label for="email">User email</label>
                 </div>
-                <button type="submit" class="light-btn">Add User</button>
+                <button id="addUserToLeague" type="submit" class="light-btn">Add User</button>
             </form>
         </div>
     </div>
@@ -31,5 +31,13 @@
 <%- include('partials/footer') %>
 
 <script>
-    
+    document.getElementById('upadteLeague').addEventListener("click", function() {
+        socket.emit('newLeague')
+    });
+    document.getElementById('deleteLeague').addEventListener("click", function() {
+        socket.emit('newLeague')
+    });
+    document.getElementById('addUserToLeague').addEventListener("click", function() {
+        socket.emit('newLeague')
+    });
 </script>

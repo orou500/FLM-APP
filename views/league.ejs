@@ -156,7 +156,19 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 
     socket.on('newMatch', function() {
         setTimeout(function(){
-            window.location.reload(1);
+            window.location.href=window.location.href
+        }, 1000);
+    });
+
+    socket.on('newLeague', function() {
+        setTimeout(function(){
+            window.location.href=window.location.href
+        }, 1000);
+    });
+
+    socket.on('changeUserName', function() {
+        setTimeout(function(){
+            window.location.href=window.location.href
         }, 1000);
     });
 </script>

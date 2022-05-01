@@ -43,7 +43,8 @@
 
             }
             if(!data.errors){
-                window.location.replace("/");
+                socket.emit('newLeague')
+                window.location.replace("/leagues");
             }
         }
         catch (err) {

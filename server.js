@@ -8,10 +8,6 @@ io = require('socket.io')(server);
 io.on('connection', (socket) => {
     console.log('a user connected');
 
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-      });
-
       socket.on('newMatch', (title) => {
         io.emit('newMatch');
       });
@@ -19,8 +15,17 @@ io.on('connection', (socket) => {
       socket.on('deletedMatch', () => {
         io.emit('newMatch');
       });
+
       socket.on('updateMatch', () => {
         io.emit('newMatch');
+      });
+
+      socket.on('newLeague', () => {
+        io.emit('newLeague');
+      });
+
+      socket.on('changeUserName', () => {
+        io.emit('changeUserName');
       });
 
     socket.on('disconnect', () => {

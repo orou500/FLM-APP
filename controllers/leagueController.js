@@ -137,19 +137,19 @@ module.exports.findLeaguesUser = (req, res) => {
 module.exports.createMatch = async (req, res) => {
     const { title, slug, usersId, leagueId, firstPlace, secondPlace, KOG, KOA } = req.body
     User.findOne({ email: firstPlace }).then(async (usersFP) => {
-        if(usersFP.length === 0){
+        if(!usersFP){
             return res.status(401).render('404')
         }
         User.findOne({ email: secondPlace }).then(async (usersSP) => {
-            if(usersSP.length === 0){
+            if(!usersSP){
                 return res.status(401).render('404')
             }
             User.findOne({ email: KOG }).then(async (usersKOG) => {
-                if(usersKOG.length === 0){
+                if(!usersKOG){
                     return res.status(401).render('404')
                 }
                 User.findOne({ email: KOA }).then(async (usersKOA) => {
-                    if(usersKOA.length === 0){
+                    if(!usersKOA){
                         return res.status(401).render('404')
                     }
                     try{

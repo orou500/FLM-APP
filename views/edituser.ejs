@@ -12,7 +12,13 @@
                 <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" required>
                 <label for="lastName">Last Name</label>
             </div>
-            <button type="submit" class="light-btn">Submit</button>
+            <button id="changeUserName" type="submit" class="light-btn">Submit</button>
         </form>
 </div>
 <%- include('partials/footer') %>
+
+<script>
+    document.getElementById('changeUserName').addEventListener("click", function() {
+        socket.emit('changeUserName')
+    });
+</script>
