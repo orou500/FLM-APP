@@ -13,7 +13,7 @@ const { checkAuth, checkUser, checkIfAdmin } = require('./middlewares/checkAuth'
 const jwt = require('jsonwebtoken');
 
 
-mongoose.connect(`mongodb+srv://sizex:weRGh3vuw6fUwYgIN4vBvuwhu8I0@flm.pcjqa.mongodb.net/test`, {
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@flm.pcjqa.mongodb.net/test`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -89,7 +89,7 @@ app.get('/user/verify/:id', (req, res) => {
             }
             const maxAge = 3 * 24 * 60 * 60
             const createToken = (id) => {
-                return jwt.sign({ id }, 'MoSm0AbvcP7dj6MoSm0AbVMm0AbvcP', {
+                return jwt.sign({ id }, process.env.JWT_KEY, {
                     expiresIn: maxAge,
                 })
             }
