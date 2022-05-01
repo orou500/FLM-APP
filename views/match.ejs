@@ -45,6 +45,12 @@
         }, 1000);
     });
 
+    socket.on('newLeague', function() {
+        setTimeout(function(){
+            window.location.href=window.location.href
+        }, 1000);
+    });
+
     socket.on('changeUserName', function() {
         setTimeout(function(){
             window.location.href=window.location.href
